@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif; /* Use a clean font for readability */
+    background-color: #f9f9f9; /* Light background for the page */
+    color: #333; /* Darker text color for contrast */
+}
+
+.title {
+    font-size: 2.5rem; /* Large title size */
+    font-weight: bold; /* Bold title */
+    color: #28a745; /* Green color for title to reflect freshness */
+}
+
+.item {
+    font-size: 1.2rem; /* Slightly larger font for item count */
+    color: #6c757d; /* Gray color for subtitle */
+}
+
+.card {
+    border: none; /* Remove border for a cleaner look */
+    background-color: #ffffff; /* White background for cards */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    transition: transform 0.3s; /* Animation for hover effect */
+}
+
+.card-title {
+    font-weight: bold; /* Bold titles */
+    font-size: 20px; /* Title size */
+    color: #28a745; /* Match title color */
+}
+
+.card-text {
+    font-size: 20px; /* Increase font size for prices */
+}
+
+.product img {
+    width: 70px; /* Fixed width for product images */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.btn {
+    transition: background-color 0.3s, color 0.3s; /* Smooth transitions for buttons */
+}
+
+.btn-outline-success {
+    color: #28a745; /* Secondary button color */
+    border-color: #28a745; /* Match border color */
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745; /* Green background on hover */
+    color: #ffffff; /* White text on hover */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap danger color */
+    border: none; /* Remove border */
+}
+
+.btn-danger:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+.card-body {
+    padding: 1.5rem; /* Increase padding for card body */
+}
+
+/* Hide default spinners in number input */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Style for Cart Summary to look like a receipt */
+.card-body hr {
+    border-top: 1px solid #e0e0e0; /* Light gray for horizontal rules */
+}
+
+h5 {
+    margin-bottom: 0.5rem; /* Space between each line item */
+}
+
+h4.card-title {
+    font-size: 1.75rem; /* Font size for the summary title */
+}
+
+.card-body {
+    background-color: #f8f9fa; /* Slightly different background color for the summary */
+    border-radius: 8px; /* Rounded corners for the summary card */
+}
+#free-text, #free-label {
+    display: none; /* Initially hide them */
+}
+
