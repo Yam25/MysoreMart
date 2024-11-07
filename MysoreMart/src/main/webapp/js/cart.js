@@ -1,89 +1,87 @@
 $(document).ready(function () {
-    // Functionality for decreasing quantity
-    $(".decrease-qty").on("click", function () {
-        const quantityInput = $(this).closest('.product').find('.quantity');
-        let quantity = parseInt(quantityInput.val());
+    // Update the cart totals on page load
+    updateCart();
 
-        if (quantity > 1) {
-            quantity--;
-            quantityInput.val(quantity);
-            updateCartTotal();
-        }
+    // Increase quantity of an item
+    $(".increase-qty").click(function () {
+        let quantityInput = $(this).siblings(".quantity");
+        let newQuantity = parseInt(quantityInput.val()) + 1;
+        quantityInput.val(newQuantity);
+        updateCart();
     });
 
-    // Functionality for increasing quantity
-    $(".increase-qty").on("click", function () {
-        const quantityInput = $(this).closest('.product').find('.quantity');
-        let quantity = parseInt(quantityInput.val());
-
-        quantity++;
-        quantityInput.val(quantity);
-        updateCartTotal();
+    // Decrease quantity of an item
+    $(".decrease-qty").click(function () {
+        let quantityInput = $(this).siblings(".quantity");
+        let newQuantity = Math.max(1, parseInt(quantityInput.val()) - 1);
+        quantityInput.val(newQuantity);
+        updateCart();
     });
 
-    // Functionality for removing an item
-    $(".remove-item").on("click", function () {
-        $(this).closest('.product').remove();
-        updateCartTotal();
-    });
+	$(".remove-item").click(function () {
+	    var productName = $(this).closest(".product").find('.card-title').text().trim();
 
-	function updateCartTotal() {
-	    let subtotal = 0;
-	    let totalItems = 0; // Variable to count total items in the cart
-
-	    $(".product").each(function () {
-	        const price = parseFloat($(this).find('.price').text()); // Get product price from element
-	        const quantity = parseInt($(this).find('.quantity').val()); // Get the current quantity
-	        subtotal += price * quantity; // Add to subtotal
-	        totalItems += quantity; // Count items
+	    $.ajax({
+	        url: baseUrl,
+	        type: 'POST',
+	        contentType: 'application/x-www-form-urlencoded', // Explicitly stating the content type
+	        data: { pname: productName },
+	        success: function(response) {
+	            alert(response);
+	            $(this).closest(".product").remove();
+	            updateCart();
+	        }.bind(this),
+	        error: function(xhr) {
+	            alert('Error deleting item: ' + xhr.responseText);
+	        }
 	    });
+	});
+    // Function to update the cart totals and item count
+    function updateCart() {
+        let subtotal = 0;
+        let itemCount = 0;
 
-	    const gstRate = 0.05; // GST rate (5%)
-	    const gst = subtotal * gstRate; // Calculate GST
-	    const deliveryFee = calculateDeliveryCharges(subtotal); // Calculate delivery charges
-	    const total = subtotal + gst + deliveryFee; // Calculate total including GST and delivery
+        // Calculate subtotal and item count
+        $(".product").each(function () {
+            let price = parseFloat($(this).data("price"));
+            let quantity = parseInt($(this).find(".quantity").val());
+            subtotal += price * quantity;
+            itemCount += quantity; // Update total item count
+        });
 
-	    // Update the totals in the DOM
-	    $("#subtotal").text(subtotal.toFixed(2)); // Update subtotal display
-	    $("#gst").text(gst.toFixed(2)); // Update GST display
+        // Calculate GST and delivery fees based on subtotal
+        let gst = subtotal * 0.05; // 5% GST
+        let deliveryFee;
 
-	    // Update delivery charges display
-	    if (deliveryFee === 0) {
-	        $("#delivery-fee").html(`&#8377;<span id="delivery-fee-value" style="text-decoration: line-through;">30.00</span> <span id="free-label" class="text-muted" style="font-size: smaller;">free</span>`);
-	    } else {
-	        $("#delivery-fee").html(`&#8377;<span id="delivery-fee-value">${deliveryFee.toFixed(2)}</span>`);
-	        $("#free-label").hide(); // Hide the free label if not applicable
-	    }
-
-	    $("#cart-total").text(total.toFixed(2)); // Update total in the DOM
-
-	    // Update the cart item count
-	    $("#cart-item-count").text(`${totalItems} item${totalItems !== 1 ? 's' : ''} in your cart`); // Update the item count message
-
-	    // Show/hide empty cart message
-	    if (subtotal === 0) {
-	        $("#empty-cart").show();        // Show the empty cart message
-	        $("#cart-items").hide();        // Hide the cart items
-	    } else {
-	        $("#empty-cart").hide();        // Hide the empty cart message
-	        $("#cart-items").show();        // Show the cart items
-	    }
-	}
-
-
-    // Function to calculate delivery charges based on subtotal
-    function calculateDeliveryCharges(subtotal) {
+        // Determine delivery fee based on subtotal
         if (subtotal < 100) {
-            return 50; // Delivery fee for subtotal less than 100
+            deliveryFee = 50;
         } else if (subtotal >= 100 && subtotal <= 199) {
-            return 30; // Delivery fee for subtotal between 100 and 199
-        } else if (subtotal >= 200 && subtotal <= 300) {
-            return 15; // Delivery fee for subtotal between 200 and 300
+            deliveryFee = 30;
+        } else if (subtotal >= 200 && subtotal < 300) {
+            deliveryFee = 15;
         } else {
-            return 0; // Free delivery for subtotal above 300
+            deliveryFee = 0;
+        }
+
+        let total = subtotal + gst + deliveryFee;
+
+        // Update the displayed totals
+        $("#subtotal").text(subtotal.toFixed(2));
+        $("#gst").text(gst.toFixed(2));
+        $("#delivery-fee-value").text(deliveryFee.toFixed(2));
+        $("#cart-total").text(total.toFixed(2));
+
+        // Update the cart item count display
+        $("#cart-item-count").text(itemCount + " items in your cart");
+
+        // Show or hide the empty cart message
+        if ($(".product").length === 0) {
+            $("#empty-cart").show();
+            $("#cart-items").hide();
+        } else {
+            $("#empty-cart").hide();
+            $("#cart-items").show();
         }
     }
-
-    // Initial call to update totals on page load
-    updateCartTotal();
 });
