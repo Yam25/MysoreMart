@@ -21,9 +21,8 @@ public class CartService {
         return cartRepo.getAllCartItems(); // Fetch all cart items from the database
     }
 
-    public boolean deleteCartItemByName(String productName) {
-        // Attempt to delete the cart item by product name using the repository
-    	 System.out.println("Attempting to delete product: " + productName);
-        return cartRepo.deleteCartItemByName(productName);
-    }
+	public boolean deleteCartItemById(long id) {
+		
+		return cartRepo.deleteCartItemById(id);
+	}
 }

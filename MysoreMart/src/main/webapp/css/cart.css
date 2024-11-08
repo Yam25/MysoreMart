@@ -3,7 +3,6 @@ body {
     background-color: #f9f9f9; 
     color: #333;
 }
-
 .title {
     font-size: 2.5rem; 
     font-weight: bold; 
@@ -86,4 +85,3 @@ h4.card-title {
 #free-text, #free-label {
     display: none; 
 }
-

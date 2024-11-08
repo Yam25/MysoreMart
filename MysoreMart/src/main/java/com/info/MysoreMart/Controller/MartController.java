@@ -17,15 +17,15 @@ public class MartController {
     private CartService cartService;
     @GetMapping("/")
     public String home() {
-        return "index"; // This maps to /WEB-INF/views/index.jsp
+        return "index"; 
     }
 
     @GetMapping("/cart")
     public String getCartItems(Model model) {
         List<CartDetails> cartItems = cartService.getAllCartItems();
-        System.out.println("Fetched cart items: " + cartItems); // Log fetched cart items
+        System.out.println("Fetched cart items: " + cartItems); 
         model.addAttribute("cartItems", cartItems);
-        return "cart"; // Return the view name for cart.jsp
+        return "cart"; 
     }
 
 }

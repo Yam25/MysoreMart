@@ -1,6 +1,8 @@
 $(document).ready(function () {
+	
     // Update the cart totals on page load
     updateCart();
+	var productName = $(this).closest(".product").find('.card-title').text().trim();
 
     // Increase quantity of an item
     $(".increase-qty").click(function () {
@@ -18,24 +20,27 @@ $(document).ready(function () {
         updateCart();
     });
 
-	$(".remove-item").click(function () {
-	    var productName = $(this).closest(".product").find('.card-title').text().trim();
+	   
+	    $(".remove-item").click(function() {
+	        var cartId = $(this).data("cart-id"); 
 
-	    $.ajax({
-	        url: baseUrl,
-	        type: 'POST',
-	        contentType: 'application/x-www-form-urlencoded', // Explicitly stating the content type
-	        data: { pname: productName },
-	        success: function(response) {
-	            alert(response);
-	            $(this).closest(".product").remove();
-	            updateCart();
-	        }.bind(this),
-	        error: function(xhr) {
-	            alert('Error deleting item: ' + xhr.responseText);
-	        }
+	        // AJAX request to remove item from the cart
+	        $.ajax({
+	            url: baseUrl, 
+	            type: 'POST',
+	            contentType: 'application/x-www-form-urlencoded', 
+	            data: { cartId: cartId }, 
+	            success: function(response) {
+					$("#remove-alert").fadeIn(400).delay(2000).fadeOut(400);
+	                $(this).closest(".product").remove();
+	                updateCart();
+	            }.bind(this),
+	            error: function(xhr) {
+	                alert('Error deleting item: ' + xhr.responseText);
+	            }
+	        });
 	    });
-	});
+
     // Function to update the cart totals and item count
     function updateCart() {
         let subtotal = 0;
@@ -72,16 +77,18 @@ $(document).ready(function () {
         $("#delivery-fee-value").text(deliveryFee.toFixed(2));
         $("#cart-total").text(total.toFixed(2));
 
-        // Update the cart item count display
+        
         $("#cart-item-count").text(itemCount + " items in your cart");
 
-        // Show or hide the empty cart message
+       
         if ($(".product").length === 0) {
             $("#empty-cart").show();
-            $("#cart-items").hide();
+            $("#card-sec").hide();
+			$("#cart").hide();
         } else {
             $("#empty-cart").hide();
-            $("#cart-items").show();
+            $("#card-sec").show();
+			$("#cart").show();
         }
     }
 });
