@@ -65,7 +65,7 @@
 				<ul
 					class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
 					<!-- Added d-flex and align-items-center -->
-					<li class="nav-item"><a class="nav-link" href="login.jsp">
+					<li class="nav-item"><a class="nav-link" href="/MysoreMart/login">
 							<button type="button" class="btn btn-outline-dark">Login/SignUp</button>
 					</a></li>
                 <li class="nav-item">
