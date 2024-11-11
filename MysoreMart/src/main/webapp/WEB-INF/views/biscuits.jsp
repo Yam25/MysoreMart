@@ -247,7 +247,7 @@ input[type="text"] {
 
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
-			<a class="navbar-brand ms-0" href="index"> <img
+			<a class="navbar-brand ms-0" href="/MysoreMart/"> <img
 				src="images/product/mart.png" alt="Mysore Mart" width="200"
 				height="75">
 			</a>

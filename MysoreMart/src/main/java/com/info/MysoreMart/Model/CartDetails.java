@@ -13,7 +13,7 @@ public class CartDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long cid;
 
     @Column(name = "product_name") 
     private String productName;
@@ -31,8 +31,8 @@ public class CartDetails {
     public CartDetails() {}
 
     // Constructor with parameters
-    public CartDetails(long id, String productName, double price, String selectedQuantity, String imgUrl) {
-        this.id = id;
+    public CartDetails(long cid, String productName, double price, String selectedQuantity, String imgUrl) {
+        this.cid = cid;
         this.productName = productName;
         this.price = price;
         this.selectedQuantity = selectedQuantity;
@@ -41,11 +41,11 @@ public class CartDetails {
 
     
     public long getId() {
-        return id;
+        return cid;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long cid) {
+        this.cid = cid;
     }
 
     public String getProductName() {
@@ -83,7 +83,7 @@ public class CartDetails {
     @Override
     public String toString() {
         return "CartDetails{" +
-                "id=" + id +
+                "id=" + cid +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
                 ", selectedQuantity='" + selectedQuantity + '\'' +

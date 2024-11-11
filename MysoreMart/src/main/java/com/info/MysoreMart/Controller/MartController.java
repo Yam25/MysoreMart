@@ -23,19 +23,42 @@ public class MartController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";  // Return login.jsp or login.html
+        return "login"; 
     }
     
     @GetMapping("/register")
     public String register() {
-        return "register";  // Return login.jsp or login.html
+        return "register"; 
     }
     
     @GetMapping("/forget")
     public String forgot() {
-        return "forget";  // Return userForget.jsp  or userForget.html
+        return "forget";  
     }
     
+    @GetMapping("/fruits")
+    public String fruits() {
+        return "fruits";  
+    }
+    @GetMapping("/biscuits")
+    public String biscuits() {
+        return "biscuits";  
+    }
+    
+    @GetMapping("/dal-pulses")
+    public String dalpulses() {
+        return "dal-pulses";  
+    }
+    
+    @GetMapping("/grocery")
+    public String grocery() {
+        return "grocery";  
+    }
+    
+    @GetMapping("/dryFruits")
+    public String dryFruits() {
+        return "dryFruits";  
+    }
     
     @GetMapping("/cart")
     public String getCartItems(Model model) {

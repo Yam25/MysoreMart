@@ -35,7 +35,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
-			<a class="navbar-brand ms-0" href="index"> <img
+			<a class="navbar-brand ms-0" href="/MysoreMart/"> <img
 				src="images/product/mart.png" alt="Mysore Mart" width="200"
 				height="75">
 			</a>
@@ -72,7 +72,7 @@
 				<ul
 					class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
 					<!-- Added d-flex and align-items-center -->
-					<li class="nav-item"><a class="nav-link" href="login.jsp">
+					<li class="nav-item"><a class="nav-link" href="/MysoreMart/login">
 							<button type="button" class="btn btn-outline-dark">Login/SignUp</button>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
