@@ -42,7 +42,7 @@
                         <li><a class="dropdown-item" href="<c:url value='/logout'/>">Logout</a></li>
                         
                         <!-- New "Change Password" Option -->
-                        <li><a class="dropdown-item" href="<c:url value='/forgot'/>">Change Password</a></li>
+                        <li><a class="dropdown-item" href="<c:url value='/forget'/>">Change Password</a></li>
                         
                         <!-- New "Contact Us" Option -->
                         <li><a class="dropdown-item" href="<c:url value='#'/>">Contact Us</a></li>

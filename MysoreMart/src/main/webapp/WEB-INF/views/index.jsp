@@ -11,8 +11,7 @@
 <meta name="keywords"
 	content="grocery, provisions, home goods, online shopping, MysoreMart, buy online, best deals">
 <meta name="robots" content="index, follow">
-    <title>MysoreMart - Shop the Best Deals on Groceries &
-	Provisions</title>
+    <title>MysoreMarT</title>
 	<link rel="icon" href="images/product/mart.png" sizes="256x256"
 	type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
@@ -28,7 +27,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
-			<a class="navbar-brand ms-0" href="index"> <img
+			<a class="navbar-brand ms-0" href="/MysoreMart/"> <img
 				src="images/product/mart.png" alt="Mysore Mart" width="200"
 				height="75">
 			</a>
