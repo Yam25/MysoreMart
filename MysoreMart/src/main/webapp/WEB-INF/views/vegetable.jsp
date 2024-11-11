@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>MysoreMart - Shop the Best Deals on Groceries &
 	Provisions</title>
-<link rel="icon" href="images/product/logo 1.png" type="image/png">
+<link rel="icon" href="images/product/mart.png" type="image/png">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -26,7 +26,7 @@ body {
 }
 
 body {
-	background: linear-gradient(135deg, #B6F1A0, #FFB3B3);
+	
 	background-size: cover;
 	background-position: center;
 	color: #333;
@@ -130,7 +130,35 @@ input[type="text"] {
 	background-color: #007bff;
 	color: white;
 }
+
+#success-alert {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1050;
+	width: auto;
+	padding: 10px 20px;
+	background-color: rgba(144, 238, 144, 0.8);
+	color: darkgreen;
+	border-radius: 5px;
+}
+
+.cart-icon {
+	position: relative;
+}
+
+#cart-count {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	display: none;
+	z-index: 10;
+}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
 <script>
     let currentPage = 1;
     const itemsPerPage = 6;
@@ -225,7 +253,7 @@ input[type="text"] {
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
 			<a class="navbar-brand ms-0" href="index"> <img
-				src="images/product/logo 1.png" alt="Mysore Mart" width="200"
+				src="images/product/mart.png" alt="Mysore Mart" width="200"
 				height="75">
 			</a>
 			<button class="navbar-toggler" type="button"
@@ -252,25 +280,26 @@ input[type="text"] {
 									Grains</a></li>
 						</ul></li>
 				</ul>
-				
+
 				<ul
 					class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
 					<!-- Added d-flex and align-items-center -->
 					<li class="nav-item"><a class="nav-link" href="login.jsp">
 							<button type="button" class="btn btn-outline-dark">Login/SignUp</button>
 					</a></li>
-					<li class="nav-item ms-2"><a class="nav-link"
-						href="/MysoreMart/cart"> <i
-							class="bi bi-cart4 text-danger cart-icon fs-1"></i>
+					<li class="nav-item"><a class="nav-link"
+						href="/MysoreMart/cart" style="position: relative;"> <i
+							class="bi bi-cart4 text-danger fs-2"></i> <span id="cart-count"
+							class="badge bg-danger" style="display: none;">0</span>
 					</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
-	<div id="success-alert" class="alert alert-success" role="alert" style="display: none;">
-            Item has been added to cart successfully.
-        </div>
+
+	<div id="success-alert" class="alert alert-success" role="alert"
+		style="display: none;">Item has been added to cart successfully.
+	</div>
 
 	<div class="text-center mb-4">
 		<div class="search-container w-50 d-inline">
@@ -280,461 +309,463 @@ input[type="text"] {
 				class="fas fa-search search-icon"></i>
 		</div>
 	</div>
-
-	<div id="menu" class="container mt-5">
-		<h2 class="text-center mb-4">Fresh Indian Vegetables</h2>
-		<div class="row">
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/okra.jpg" class="card-img-top"
-						alt="Okra">
-					<div class="card-body">
-						<h5 class="card-title">Okra (Bhindi)</h5>
-						<p class="card-text">A green, elongated vegetable with a slimy
-							texture, often used in curries and stir-fries.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="25">500g - ₹25</option>
-								<option value="1kg" data-price="50">1kg - ₹50</option>
-								<option value="2kg" data-price="100">2kg - ₹100</option>
-							</select>
+	<form action="add" method="post" id="cart-form">
+		<div id="menu" class="container mt-5">
+			<h2 class="text-center mb-4">Fresh Indian Vegetables</h2>
+			<div class="row">
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/okra.jpg" class="card-img-top"
+							alt="Okra">
+						<div class="card-body">
+							<h5 class="card-title">Okra (Bhindi)</h5>
+							<p class="card-text">A green, elongated vegetable with a
+								slimy texture, often used in curries and stir-fries.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="25">500g - ₹25</option>
+									<option value="1kg" data-price="50">1kg - ₹50</option>
+									<option value="2kg" data-price="100">2kg - ₹100</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
 						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/brinjal.jpg"
+							class="card-img-top" alt="Brinjal">
+						<div class="card-body">
+							<h5 class="card-title">Brinjal (Baingan)</h5>
+							<p class="card-text">A purple, glossy vegetable with a spongy
+								texture, used in various curries, grilling, and roasting.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500" data-price="200">500g - ₹200</option>
+									<option value="3000" data-price="1200">3kg - ₹1200</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/cauliflower.jpg"
+							class="card-img-top" alt="Cauliflower">
+						<div class="card-body">
+							<h5 class="card-title">Cauliflower (Gobhi)</h5>
+							<p class="card-text">A white vegetable with a mild flavor,
+								commonly used in curries, stews, and stir-fries.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500" data-price="200">500g - ₹200</option>
+									<option value="3000" data-price="1200">3kg - ₹1200</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/potato.jpg"
+							class="card-img-top" alt="Potato">
+						<div class="card-body">
+							<h5 class="card-title">Potato (Aloo)</h5>
+							<p class="card-text">A versatile tuber with a starchy
+								texture, used in nearly every type of dish, from curries to
+								snacks.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500" data-price="200">500g - ₹200</option>
+									<option value="3000" data-price="1200">3kg - ₹1200</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/methi.jpg"
+							class="card-img-top" alt="Fenugreek">
+						<div class="card-body">
+							<h5 class="card-title">Fenugreek (Methi)</h5>
+							<p class="card-text">A leafy herb with a slightly bitter
+								taste, used in curries, parathas, and pickles.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500" data-price="200">500g - ₹200</option>
+									<option value="3000" data-price="1200">3kg - ₹1200</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/knol-knol.jpg"
+							class="card-img-top" alt="Knol Khol">
+						<div class="card-body">
+							<h5 class="card-title">Knol Khol (Kohlrabi)</h5>
+							<p class="card-text">A round, green vegetable with a mild,
+								slightly sweet flavor, often used in soups and stir-fries.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500" data-price="200">500g - ₹200</option>
+									<option value="3000" data-price="1200">3kg - ₹1200</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/ridge.jpg"
+							class="card-img-top" alt="Ridge Gourd">
+						<div class="card-body">
+							<h5 class="card-title">Ridge Gourd (Turai)</h5>
+							<p class="card-text">A green, ridged vegetable with a mild
+								flavor, used in curries, dals, and stir-fries.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500" data-price="200">500g - ₹200</option>
+									<option value="3000" data-price="1200">3kg - ₹1200</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/chilli.jpg"
+							class="card-img-top" alt="Green Chili">
+						<div class="card-body">
+							<h5 class="card-title">Green Chili (Hari Mirch)</h5>
+							<p class="card-text">Small, spicy peppers that add heat and
+								flavor to various dishes,a key ingredient in many Indian
+								recipes.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500" data-price="200">500g - ₹200</option>
+									<option value="3000" data-price="1200">3kg - ₹1200</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/ash.jpg" class="card-img-top"
+							alt="Ash Gourd">
+						<div class="card-body">
+							<h5 class="card-title">Ash Gourd (Petha)</h5>
+							<p class="card-text">A large, green vegetable with a mild,
+								neutral flavor, often used in soups and sweets.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500" data-price="200">500g - ₹200</option>
+									<option value="3000" data-price="1200">3kg - ₹1200</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/bottle-gourd.jpg"
+							class="card-img-top" alt="Bottle Gourd">
+						<div class="card-body">
+							<h5 class="card-title">Bottle Gourd (Lauki)</h5>
+							<p class="card-text">A light green, smooth vegetable, used in
+								curries, stews, and smoothies.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="15">500g - ₹15</option>
+									<option value="1kg" data-price="30">1kg - ₹30</option>
+									<option value="2kg" data-price="60">2kg - ₹60</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/coriander.jpg"
+							class="card-img-top" alt="Coriander">
+						<div class="card-body">
+							<h5 class="card-title">Coriander (Cilantro)</h5>
+							<p class="card-text">A fragrant herb with bright green
+								leaves, used in garnishes, chutneys, and salads.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="40">500g - ₹40</option>
+									<option value="1kg" data-price="80">1kg - ₹80</option>
+									<option value="2kg" data-price="160">2kg - ₹160</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/green-peas.jpg"
+							class="card-img-top" alt="Green Peas">
+						<div class="card-body">
+							<h5 class="card-title">Green Peas (Matar)</h5>
+							<p class="card-text">Small, round, green seeds that are sweet
+								and commonly used in curries, soups, and salads.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="25">500g - ₹25</option>
+									<option value="1kg" data-price="50">1kg - ₹50</option>
+									<option value="2kg" data-price="100">2kg - ₹100</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/spinach.jpg"
+							class="card-img-top" alt="Spinach">
+						<div class="card-body">
+							<h5 class="card-title">Spinach (Palak)</h5>
+							<p class="card-text">A highly nutritious leafy green
+								vegetable used in various curries and dishes.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="40">500g - ₹40</option>
+									<option value="1kg" data-price="80">1kg - ₹80</option>
+									<option value="2kg" data-price="160">2kg - ₹160</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/carrots.jpg"
+							class="card-img-top" alt="Carrot">
+						<div class="card-body">
+							<h5 class="card-title">Carrot (Gajar)</h5>
+							<p class="card-text">A root vegetable, orange in color, with
+								a crunchy texture, used in salads, curries, and desserts.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="30">500g - ₹30</option>
+									<option value="1kg" data-price="60">1kg - ₹60</option>
+									<option value="2kg" data-price="120">2kg - ₹120</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/drum-stick.jpg"
+							class="card-img-top" alt="Drumstick">
+						<div class="card-body">
+							<h5 class="card-title">Drumstick (Moringa)</h5>
+							<p class="card-text">A nutrient-rich vegetable used in soups
+								and curries, known for its health benefits.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="20">500g - ₹20</option>
+									<option value="1kg" data-price="40">1kg - ₹40</option>
+									<option value="2kg" data-price="80">2kg - ₹80</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/sweet-potato.jpg"
+							class="card-img-top" alt="Sweet Potato">
+						<div class="card-body">
+							<h5 class="card-title">Sweet Potato (Shakarkandi)</h5>
+							<p class="card-text">A sweet and starchy root vegetable,
+								commonly used in snacks and curries.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="20">500g - ₹20</option>
+									<option value="1kg" data-price="40">1kg - ₹40</option>
+									<option value="2kg" data-price="80">2kg - ₹80</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/pumpkin.jpg"
+							class="card-img-top" alt="Pumpkin">
+						<div class="card-body">
+							<h5 class="card-title">Pumpkin (Kaddu)</h5>
+							<p class="card-text">A sweet, orange vegetable used in
+								curries, soups, and desserts. It can also be roasted or made
+								into stews.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="15">500g - ₹15</option>
+									<option value="1kg" data-price="30">1kg - ₹30</option>
+									<option value="2kg" data-price="60">2kg - ₹60</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4 mb-4 vegetable-item">
+					<div class="card vegetables-card">
+						<img src="images/product/vegetables/taro.jpg" class="card-img-top"
+							alt="Taro">
+						<div class="card-body">
+							<h5 class="card-title">Taro (Arbi)</h5>
+							<p class="card-text">A starchy root vegetable, often used in
+								curries and fried dishes Taro has a slightly nutty flavor.</p>
+							<p class="card-text">
+								<strong>&#8377;249</strong>
+							</p>
+							<div class="mb-3">
+								<select class="form-select" id="selectedQuantity"
+									name="selectedQuantity">
+									<option value="500g" data-price="20">500g - ₹20</option>
+									<option value="1kg" data-price="40">1kg - ₹40</option>
+									<option value="2kg" data-price="80">2kg - ₹80</option>
+								</select>
+							</div>
+							<button class="btn btn-outline-danger add-to-cart">Add
+								to Cart</button>
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/brinjal.jpg" class="card-img-top"
-						alt="Brinjal">
-					<div class="card-body">
-						<h5 class="card-title">Brinjal (Baingan)</h5>
-						<p class="card-text">A purple, glossy vegetable with a spongy
-							texture, used in various curries, grilling, and roasting.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500" data-price="200">500g - ₹200</option>
-								<option value="3000" data-price="1200">3kg - ₹1200</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/cauliflower.jpg" class="card-img-top"
-						alt="Cauliflower">
-					<div class="card-body">
-						<h5 class="card-title">Cauliflower (Gobhi)</h5>
-						<p class="card-text">A white vegetable with a mild flavor,
-							commonly used in curries, stews, and stir-fries.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500" data-price="200">500g - ₹200</option>
-								<option value="3000" data-price="1200">3kg - ₹1200</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/potato.jpg" class="card-img-top"
-						alt="Potato">
-					<div class="card-body">
-						<h5 class="card-title">Potato (Aloo)</h5>
-						<p class="card-text">A versatile tuber with a starchy texture,
-							used in nearly every type of dish, from curries to snacks.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500" data-price="200">500g - ₹200</option>
-								<option value="3000" data-price="1200">3kg - ₹1200</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/methi.jpg" class="card-img-top"
-						alt="Fenugreek">
-					<div class="card-body">
-						<h5 class="card-title">Fenugreek (Methi)</h5>
-						<p class="card-text">A leafy herb with a slightly bitter
-							taste, used in curries, parathas, and pickles.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500" data-price="200">500g - ₹200</option>
-								<option value="3000" data-price="1200">3kg - ₹1200</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/knol-knol.jpg" class="card-img-top"
-						alt="Knol Khol">
-					<div class="card-body">
-						<h5 class="card-title">Knol Khol (Kohlrabi)</h5>
-						<p class="card-text">A round, green vegetable with a mild,
-							slightly sweet flavor, often used in soups and stir-fries.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500" data-price="200">500g - ₹200</option>
-								<option value="3000" data-price="1200">3kg - ₹1200</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/ridge.jpg" class="card-img-top"
-						alt="Ridge Gourd">
-					<div class="card-body">
-						<h5 class="card-title">Ridge Gourd (Turai)</h5>
-						<p class="card-text">A green, ridged vegetable with a mild
-							flavor, used in curries, dals, and stir-fries.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500" data-price="200">500g - ₹200</option>
-								<option value="3000" data-price="1200">3kg - ₹1200</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/chilli.jpg" class="card-img-top"
-						alt="Green Chili">
-					<div class="card-body">
-						<h5 class="card-title">Green Chili (Hari Mirch)</h5>
-						<p class="card-text">Small, spicy peppers that add heat and
-							flavor to various dishes,a key ingredient in many Indian recipes.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500" data-price="200">500g - ₹200</option>
-								<option value="3000" data-price="1200">3kg - ₹1200</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/ash.jpg" class="card-img-top"
-						alt="Ash Gourd">
-					<div class="card-body">
-						<h5 class="card-title">Ash Gourd (Petha)</h5>
-						<p class="card-text">A large, green vegetable with a mild,
-							neutral flavor, often used in soups and sweets.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500" data-price="200">500g - ₹200</option>
-								<option value="3000" data-price="1200">3kg - ₹1200</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/bottle-gourd.jpg" class="card-img-top"
-						alt="Bottle Gourd">
-					<div class="card-body">
-						<h5 class="card-title">Bottle Gourd (Lauki)</h5>
-						<p class="card-text">A light green, smooth vegetable, used in
-							curries, stews, and smoothies.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="15">500g - ₹15</option>
-								<option value="1kg" data-price="30">1kg - ₹30</option>
-								<option value="2kg" data-price="60">2kg - ₹60</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/coriander.jpg" class="card-img-top"
-						alt="Coriander">
-					<div class="card-body">
-						<h5 class="card-title">Coriander (Cilantro)</h5>
-						<p class="card-text">A fragrant herb with bright green leaves,
-							used in garnishes, chutneys, and salads.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="40">500g - ₹40</option>
-								<option value="1kg" data-price="80">1kg - ₹80</option>
-								<option value="2kg" data-price="160">2kg - ₹160</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/green-peas.jpg" class="card-img-top"
-						alt="Green Peas">
-					<div class="card-body">
-						<h5 class="card-title">Green Peas (Matar)</h5>
-						<p class="card-text">Small, round, green seeds that are sweet
-							and commonly used in curries, soups, and salads.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="25">500g - ₹25</option>
-								<option value="1kg" data-price="50">1kg - ₹50</option>
-								<option value="2kg" data-price="100">2kg - ₹100</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/spinach.jpg" class="card-img-top"
-						alt="Spinach">
-					<div class="card-body">
-						<h5 class="card-title">Spinach (Palak)</h5>
-						<p class="card-text">A highly nutritious leafy green vegetable
-							used in various curries and dishes.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="40">500g - ₹40</option>
-								<option value="1kg" data-price="80">1kg - ₹80</option>
-								<option value="2kg" data-price="160">2kg - ₹160</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/carrots.jpg" class="card-img-top"
-						alt="Carrot">
-					<div class="card-body">
-						<h5 class="card-title">Carrot (Gajar)</h5>
-						<p class="card-text">A root vegetable, orange in color, with a
-							crunchy texture, used in salads, curries, and desserts.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="30">500g - ₹30</option>
-								<option value="1kg" data-price="60">1kg - ₹60</option>
-								<option value="2kg" data-price="120">2kg - ₹120</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/drum-stick.jpg" class="card-img-top"
-						alt="Drumstick">
-					<div class="card-body">
-						<h5 class="card-title">Drumstick (Moringa)</h5>
-						<p class="card-text">A nutrient-rich vegetable used in soups
-							and curries, known for its health benefits.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="20">500g - ₹20</option>
-								<option value="1kg" data-price="40">1kg - ₹40</option>
-								<option value="2kg" data-price="80">2kg - ₹80</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/sweet-potato.jpg" class="card-img-top"
-						alt="Sweet Potato">
-					<div class="card-body">
-						<h5 class="card-title">Sweet Potato (Shakarkandi)</h5>
-						<p class="card-text">A sweet and starchy root vegetable,
-							commonly used in snacks and curries.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="20">500g - ₹20</option>
-								<option value="1kg" data-price="40">1kg - ₹40</option>
-								<option value="2kg" data-price="80">2kg - ₹80</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/pumpkin.jpg" class="card-img-top"
-						alt="Pumpkin">
-					<div class="card-body">
-						<h5 class="card-title">Pumpkin (Kaddu)</h5>
-						<p class="card-text">A sweet, orange vegetable used in
-							curries, soups, and desserts. It can also be roasted or made into
-							stews.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="15">500g - ₹15</option>
-								<option value="1kg" data-price="30">1kg - ₹30</option>
-								<option value="2kg" data-price="60">2kg - ₹60</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-4 mb-4 vegetable-item">
-				<div class="card vegetables-card">
-					<img src="images/product/vegetables/taro.jpg" class="card-img-top"
-						alt="Taro">
-					<div class="card-body">
-						<h5 class="card-title">Taro (Arbi)</h5>
-						<p class="card-text">A starchy root vegetable, often used in
-							curries and fried dishes Taro has a slightly nutty flavor.</p>
-						<p class="card-text">
-							<strong>&#8377;249</strong>
-						</p>
-						<div class="mb-3">
-							<select class="form-select" id="selectedQuantity"
-								name="selectedQuantity">
-								<option value="500g" data-price="20">500g - ₹20</option>
-								<option value="1kg" data-price="40">1kg - ₹40</option>
-								<option value="2kg" data-price="80">2kg - ₹80</option>
-							</select>
-						</div>
-						<button class="btn btn-outline-danger add-to-cart">Add to
-							Cart</button>
-					</div>
-				</div>
-			</div>
+			<div id="pagination" class="pagination-container"></div>
 		</div>
-
-		<div id="pagination" class="pagination-container"></div>
-	</div>
-
+	</form>
 	<footer class="text-center mt-5">
 		<p>Enjoy Fresh and Healthy Vegetables!</p>
 		<p>
-			<a href="index.jsp" class="text-success">Go back to Home</a>
+			<a href="index" class="text-success">Go back to Home</a>
 		</p>
 	</footer>
 	<footer class="bg-dark py-3 mt-3">
@@ -745,13 +776,15 @@ input[type="text"] {
 		</div>
 		<div class="container text-light text-center">
 			<a class="navbar-brand ms-0" href="index"> <img
-				src="images/product/logo 1.png" alt="Mysore Mart" width="200"
+				src="images/product/mart.png" alt="Mysore Mart" width="200"
 				height="75">
 			</a> <br> <small class="text-white-50">&copy; 2024
 				MysoreMart. All rights reserved. </small>
 			<!-- copy symbol and  white text with 50% opacity -->
 		</div>
 	</footer>
+
+	<script src="<c:url value='/js/index.js'/>"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

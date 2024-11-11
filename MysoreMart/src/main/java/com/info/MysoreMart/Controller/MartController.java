@@ -36,6 +36,52 @@ public class MartController {
         return "forget";  // Return userForget.jsp  or userForget.html
     }
     
+    @GetMapping("/index")
+    public String index() {
+        return "index"; 
+    }
+	
+	@GetMapping("/dairyProducts")
+    public String dairyProducts() {
+        return "dairyProducts"; 
+    }
+	
+	@GetMapping("/dryFruits")
+    public String dryfruits() {
+        return "dryFruits"; 
+    }
+	
+	@GetMapping("/vegetable")
+    public String veggies() {
+        return "vegetable"; 
+    }
+	
+	@GetMapping("/spices")
+    public String spices() {
+        return "spices"; 
+    }
+	
+	@GetMapping("/fruits")
+    public String fruits() {
+        return "fruits"; 
+    }
+	
+	@GetMapping("/biscuits")
+    public String dummy() {
+        return "biscuits"; 
+    }
+	
+	@GetMapping("/dal-pulses")
+    public String dal_pulses() {
+        return "dal-pulses"; 
+    }
+	
+	@GetMapping("/grocery")
+    public String grocery() {
+        return "grocery"; 
+    }
+
+    
     
     @GetMapping("/cart")
     public String getCartItems(Model model) {

@@ -26,7 +26,6 @@ body {
 }
 
 body {
-	background: linear-gradient(135deg, #B6F1A0, #FFB3B3);
 	background-size: cover;
 	background-position: center; 
 	color: #333; 
@@ -130,7 +129,35 @@ input[type="text"] {
 	background-color: #007bff;
 	color: white;
 }
+
+#success-alert {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1050;
+	width: auto;
+	padding: 10px 20px;
+	background-color: rgba(144, 238, 144, 0.8);
+	color: darkgreen;
+	border-radius: 5px;
+}
+
+.cart-icon {
+	position: relative;
+}
+
+#cart-count {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	display: none;
+	z-index: 10;
+}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
 <script>
     let currentPage = 1;
     const itemsPerPage = 6;
@@ -214,6 +241,10 @@ input[type="text"] {
     	  }
     	});
 </script>
+<script>
+        // Define the base URL for AJAX requests
+        var baseUrl = "<c:url value='/add'/>";
+    </script>
 </head>
 <body>
 
@@ -254,14 +285,19 @@ input[type="text"] {
 					<li class="nav-item"><a class="nav-link" href="login.jsp">
 							<button type="button" class="btn btn-outline-dark">Login/SignUp</button>
 					</a></li>
-					<li class="nav-item ms-2"><a class="nav-link"
-						href="/MysoreMart/cart"> <i
-							class="bi bi-cart4 text-danger cart-icon fs-1"></i>
+					<li class="nav-item"><a class="nav-link"
+						href="/MysoreMart/cart" style="position: relative;"> <i
+							class="bi bi-cart4 text-danger fs-2"></i> <span id="cart-count"
+							class="badge bg-danger" style="display: none;">0</span>
 					</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	
+	<div id="success-alert" class="alert alert-success" role="alert"
+		style="display: none;">Item has been added to cart successfully.
+	</div>
 
 	<div class="text-center mb-4">
 		<div class="search-container w-50 d-inline">
@@ -271,6 +307,7 @@ input[type="text"] {
 		</div>
 	</div>
 
+<form action="add" method="post" id="cart-form">
 	<div id="menu" class="container mt-5">
 		<h2 class="text-center mb-4">Indian Dals & Pulses</h2>
 		<div class="row">
@@ -286,8 +323,8 @@ input[type="text"] {
 							<strong>&#8377;50</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-toor-dal"
-								name="quantity-toor-dal">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="50">100g - ₹50</option>
 								<option value="500" data-price="220">500g - ₹220</option>
 							</select>
@@ -310,8 +347,8 @@ input[type="text"] {
 							<strong>&#8377;60</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-chana-dal"
-								name="quantity-chana-dal">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="60">100g - ₹60</option>
 								<option value="500" data-price="250">500g - ₹250</option>
 							</select>
@@ -334,8 +371,8 @@ input[type="text"] {
 							<strong>&#8377;40</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-masoor-dal"
-								name="quantity-masoor-dal">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="40">100g - ₹40</option>
 								<option value="500" data-price="180">500g - ₹180</option>
 							</select>
@@ -358,8 +395,8 @@ input[type="text"] {
 							<strong>&#8377;70</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-moong-dal"
-								name="quantity-moong-dal">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="70">100g - ₹70</option>
 								<option value="500" data-price="300">500g - ₹300</option>
 							</select>
@@ -382,8 +419,8 @@ input[type="text"] {
 							<strong>&#8377;80</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-urad-dal"
-								name="quantity-urad-dal">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="80">100g - ₹80</option>
 								<option value="500" data-price="350">500g - ₹350</option>
 							</select>
@@ -406,8 +443,8 @@ input[type="text"] {
 							<strong>&#8377;55</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-arhar-dal"
-								name="quantity-arhar-dal">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="55">100g - ₹55</option>
 								<option value="500" data-price="240">500g - ₹240</option>
 							</select>
@@ -430,8 +467,8 @@ input[type="text"] {
 							<strong>&#8377;100</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-rajma"
-								name="quantity-rajma">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="100">100g - ₹100</option>
 								<option value="500" data-price="450">500g - ₹450</option>
 							</select>
@@ -454,8 +491,8 @@ input[type="text"] {
 							<strong>&#8377;120</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-kabuli-chana"
-								name="quantity-kabuli-chana">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="120">100g - ₹120</option>
 								<option value="500" data-price="550">500g - ₹550</option>
 							</select>
@@ -478,8 +515,8 @@ input[type="text"] {
 							<strong>&#8377;110</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-kala-chana"
-								name="quantity-kala-chana">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="110">100g - ₹110</option>
 								<option value="500" data-price="480">500g - ₹480</option>
 							</select>
@@ -502,8 +539,8 @@ input[type="text"] {
 							<strong>&#8377;60</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-moth-beans"
-								name="quantity-moth-beans">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="60">100g - ₹60</option>
 								<option value="500" data-price="250">500g - ₹250</option>
 							</select>
@@ -526,8 +563,8 @@ input[type="text"] {
 							<strong>&#8377;90</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-lobia"
-								name="quantity-lobia">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="90">100g - ₹90</option>
 								<option value="500" data-price="400">500g - ₹400</option>
 							</select>
@@ -550,8 +587,8 @@ input[type="text"] {
 							<strong>&#8377;30</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-sabut-methi"
-								name="quantity-sabut-methi">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="30">100g - ₹30</option>
 								<option value="500" data-price="140">500g - ₹140</option>
 							</select>
@@ -575,7 +612,7 @@ input[type="text"] {
 						</p>
 						<div class="mb-3">
 							<select class="form-select" id="quantity-tuar-dal"
-								name="quantity-double-bean">
+								name="selectedQuantity">
 								<option value="100" data-price="50">100g - ₹50</option>
 								<option value="500" data-price="220">500g - ₹220</option>
 							</select>
@@ -598,8 +635,8 @@ input[type="text"] {
 							<strong>&#8377;85</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-bengal-gram"
-								name="quantity-bengal-gram">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="85">100g - ₹85</option>
 								<option value="500" data-price="400">500g - ₹400</option>
 							</select>
@@ -622,7 +659,7 @@ input[type="text"] {
 							<strong>&#8377;50</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-split-moong"
+							<select class="form-select" id="selectedQuantity"
 								name="quantity-green-gram">
 								<option value="100" data-price="50">100g - ₹50</option>
 								<option value="500" data-price="220">500g - ₹220</option>
@@ -646,8 +683,8 @@ input[type="text"] {
 							<strong>&#8377;100</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-pulses-mix"
-								name="quantity-pulses-mix">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="100" data-price="100">100g - ₹100</option>
 								<option value="500" data-price="450">500g - ₹450</option>
 							</select>
@@ -659,6 +696,7 @@ input[type="text"] {
 			</div>
 		</div>
 	</div>
+</form>
 
 	<div id="pagination" class="pagination-container"></div>
 
@@ -686,6 +724,7 @@ input[type="text"] {
 			<!-- copy symbol and  white text with 50% opacity -->
 		</div>
 	</footer>
+	<script src="<c:url value='/js/index.js'/>"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

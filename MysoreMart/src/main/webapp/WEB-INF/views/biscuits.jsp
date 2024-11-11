@@ -242,6 +242,10 @@ input[type="text"] {
     	  }
     	});
 </script>
+<script>
+        // Define the base URL for AJAX requests
+        var baseUrl = "<c:url value='/add'/>";
+    </script>
 </head>
 <body>
 

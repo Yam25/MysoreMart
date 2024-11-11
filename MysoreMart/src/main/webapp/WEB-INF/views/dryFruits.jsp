@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>MysoreMart - Shop the Best Deals on Groceries &
 	Provisions</title>
-<link rel="icon" href="images/product/logo 1.png" type="image/png">
+<link rel="icon" href="images/product/mart.png" type="image/png">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -26,10 +26,9 @@ body {
 }
 
 body {
-	background: linear-gradient(135deg, #B6F1A0, #FFB3B3);
 	background-size: cover;
 	background-position: center;
-	color: #333; 
+	color: #333;
 }
 
 .dryfruit-card {
@@ -130,7 +129,60 @@ input[type="text"] {
 	background-color: #007bff;
 	color: white;
 }
+
+#success-alert {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1050;
+	width: auto;
+	padding: 10px 20px;
+	background-color: rgba(144, 238, 144, 0.8);
+	color: darkgreen;
+	border-radius: 5px;
+}
+
+.cart-icon {
+	position: relative;
+}
+
+#cart-count {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	display: none;
+	z-index: 10;
+}
+
+#success-alert {
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1050;
+	width: auto;
+	padding: 10px 20px;
+	background-color: rgba(144, 238, 144, 0.8);
+	color: darkgreen;
+	border-radius: 5px;
+}
+
+.cart-icon {
+	position: relative;
+}
+
+#cart-count {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	display: none;
+	z-index: 10;
+}
 </style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
 <script>
     let currentPage = 1;
     const itemsPerPage = 6;
@@ -214,13 +266,17 @@ input[type="text"] {
     	  }
     	});
 </script>
+<script>
+        // Define the base URL for AJAX requests
+        var baseUrl = "<c:url value='/add'/>";
+    </script>
 </head>
 <body>
 
 	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
 			<a class="navbar-brand ms-0" href="index"> <img
-				src="images/product/logo 1.png" alt="Mysore Mart" width="200"
+				src="images/product/mart.png" alt="Mysore Mart" width="200"
 				height="75">
 			</a>
 			<button class="navbar-toggler" type="button"
@@ -254,14 +310,19 @@ input[type="text"] {
 					<li class="nav-item"><a class="nav-link" href="login.jsp">
 							<button type="button" class="btn btn-outline-dark">Login/SignUp</button>
 					</a></li>
-					<li class="nav-item ms-2"><a class="nav-link"
-						href="/MysoreMart/cart"> <i
-							class="bi bi-cart4 text-danger cart-icon fs-1"></i>
+					<li class="nav-item"><a class="nav-link"
+						href="/MysoreMart/cart" style="position: relative;"> <i
+							class="bi bi-cart4 text-danger fs-2"></i> <span id="cart-count"
+							class="badge bg-danger" style="display: none;">0</span>
 					</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	
+	<div id="success-alert" class="alert alert-success" role="alert"
+		style="display: none;">Item has been added to cart successfully.
+	</div>
 
 	<div class="text-center mb-4">
 		<div class="search-container w-50 d-inline">
@@ -271,7 +332,7 @@ input[type="text"] {
 				class="fas fa-search search-icon"></i>
 		</div>
 	</div>
-
+<form action="add" method="post" id="cart-form">
 	<div id="menu" class="container mt-5">
 		<h2 class="text-center mb-4">Fresh Dry Fruits</h2>
 		<div class="row">
@@ -287,8 +348,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -311,8 +372,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -335,8 +396,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -359,8 +420,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -383,8 +444,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -407,8 +468,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -431,8 +492,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -455,8 +516,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -479,8 +540,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -503,8 +564,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -527,8 +588,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -551,8 +612,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -575,8 +636,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -599,8 +660,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -623,8 +684,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -647,8 +708,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -671,8 +732,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -695,8 +756,8 @@ input[type="text"] {
 							<strong>&#8377;249</strong>
 						</p>
 						<div class="mb-3">
-							<select class="form-select" id="quantity-spices"
-								name="quantity-spices">
+							<select class="form-select" id="selectedQuantity"
+								name="selectedQuantity">
 								<option value="500" data-price="200">500g - ₹200</option>
 								<option value="3000" data-price="1200">3kg - ₹1200</option>
 							</select>
@@ -708,7 +769,7 @@ input[type="text"] {
 			</div>
 		</div>
 	</div>
-
+</form>
 	<div id="pagination" class="pagination-container"></div>
 
 	<footer class="text-center">
@@ -726,7 +787,7 @@ input[type="text"] {
 		</div>
 		<div class="container text-light text-center">
 			<a class="navbar-brand ms-0" href="index"> <img
-				src="images/product/logo 1.png" alt="Mysore Mart" width="200"
+				src="images/product/mart.png" alt="Mysore Mart" width="200"
 				height="75">
 			</a> <br> <small class="text-white-50">&copy; 2024
 				MysoreMart. All rights reserved. </small>
@@ -734,6 +795,7 @@ input[type="text"] {
 		</div>
 	</footer>
 
+	<script src="<c:url value='/js/index.js'/>"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
