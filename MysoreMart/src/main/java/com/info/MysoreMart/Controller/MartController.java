@@ -33,7 +33,7 @@ public class MartController {
     
     @GetMapping("/forget")
     public String forgot() {
-        return "forget";  // Return userForget.jsp or userForget.html
+        return "forget";  // Return userForget.jsp  or userForget.html
     }
     
     

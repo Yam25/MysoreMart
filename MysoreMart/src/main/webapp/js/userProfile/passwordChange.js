@@ -101,7 +101,7 @@ $(document).ready(function() {
                     }
                 },
                 error: function(xhr, status, error) {
-                    // Handle any AJAX errors
+                    // Handle any AJAX error
                     alert("An error occurred. Please try again later.");
                 }
             });

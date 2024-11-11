@@ -16,7 +16,7 @@ $(document).ready(function() {
         }
 
         if (isValid) {
-            // Send email or phone via AJAX to server
+            // Send email or phone via AJAX to serve
             $.ajax({
                 url: '<c:url value="/verify-email-phone"/>',
                 type: 'POST',

@@ -38,7 +38,7 @@
                         User Options
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                        <!-- Existing Logout Option -->
+                        <!-- Existing Logout  Option -->
                         <li><a class="dropdown-item" href="<c:url value='/logout'/>">Logout</a></li>
                         
                         <!-- New "Change Password" Option -->

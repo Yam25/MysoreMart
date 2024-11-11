@@ -57,7 +57,7 @@
                         </div>
                     </form>
 
-                    <!-- Link to Sign In for existing users -->
+                    <!-- Link to Sign In for  existing users -->
                     <div class="existing-user-section text-center">
                         <p>Already have an account? <a href="<c:url value='/login'/>">Sign In</a></p>
                     </div>

@@ -15,7 +15,7 @@
                 return false;
             }
 
-            // Perform AJAX request to login endpoint
+            // Perform AJAX request to login endpoin
             $.ajax({
                 url: 'login',  // Use the URL for the login endpoint
                 type: 'POST',

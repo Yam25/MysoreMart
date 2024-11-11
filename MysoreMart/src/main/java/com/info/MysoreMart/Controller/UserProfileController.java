@@ -103,7 +103,7 @@ public class UserProfileController {
     ) {
     	
         // Find the user by email or phone
-        Userprofile user = null;
+        Userprofile user = null; 
         if (emailOrPhone.contains("@")) {
             user = ups.findByEmail(emailOrPhone);
         } else {

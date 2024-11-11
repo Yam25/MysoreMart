@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password - Mysore Mart</title>
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap  CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	
 	    <link rel="stylesheet" href="<c:url value='/css/userprofile/passwordChange.css'/>">

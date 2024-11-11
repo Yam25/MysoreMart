@@ -13,7 +13,7 @@ $(document).ready(function () {
         console.log("Full Name:", fullName); // Debugging: check the value of fullName
 
         // Full Name validation
-        var namePattern = /^[A-Za-z\s]+$/; // Only allows letters and spaces
+        var namePattern = /^[A-Za-z\s]+$/; // Only allows letters and space
         if (fullName === "") {
             $("#fullName").after('<div class="alert alert-danger">Full Name cannot be empty.</div>');
             return false;

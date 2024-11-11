@@ -22,7 +22,7 @@ public class UserProfileService {
     public boolean isEmailExists(String email) {
         return upr.existsByEmail(email);
     }
-
+ 
     // Check if phone exists
     public boolean isPhoneExists(String phone) {
         return upr.existsByPhone(phone);
