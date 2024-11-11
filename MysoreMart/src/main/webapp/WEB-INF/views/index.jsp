@@ -1,34 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
 	content="MysuruMart offers the best deals on groceries, home goods, and more. Shop now for amazing discounts and fast delivery.">
- 
+
 <meta name="keywords"
 	content="grocery, provisions, home goods, online shopping, MysoreMart, buy online, best deals">
 <meta name="robots" content="index, follow">
-    <title>MysoreMart - Shop the Best Deals on Groceries &
+<title>MysoreMart - Shop the Best Deals on Groceries &
 	Provisions</title>
-	<link rel="icon" href="images/product/mart.png" sizes="256x256"
+<link rel="icon" href="images/product/mart.png" sizes="256x256"
 	type="image/png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="<c:url value='/css/index.css'/>" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-        // Define the base URL for AJAX requests
-        var baseUrl = "<c:url value='/add'/>"; 
-    </script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="<c:url value='/css/index.css'/>" rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+	// Define the base URL for AJAX requests
+	var baseUrl = "<c:url value='/add'/>";
+</script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container">
-			<a class="navbar-brand ms-0" href="/MysoreMart/"> <img
+			<a class="navbar-brand ms-0" href="index"> <img
 				src="images/product/mart.png" alt="Mysore Mart" width="200"
 				height="75">
 			</a>
@@ -51,7 +58,7 @@
 							<li><a class="dropdown-item" href="dairyProducts">Dairy
 									Products</a></li>
 							<li><a class="dropdown-item" href="dryFruits">Dry Fruits</a></li>
-							<li><a class="dropdown-item" href="spices">Spices/Oils</a></li>
+							<li><a class="dropdown-item" href="spices">Spices</a></li>
 							<li><a class="dropdown-item" href="dal-pulses">Dal/Pulses</a></li>
 							<li><a class="dropdown-item" href="grocery">Wholesome
 									Grains</a></li>
@@ -65,25 +72,24 @@
 				<ul
 					class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center">
 					<!-- Added d-flex and align-items-center -->
-					<li class="nav-item"><a class="nav-link" href="/MysoreMart/login">
+					<li class="nav-item"><a class="nav-link" href="login.jsp">
 							<button type="button" class="btn btn-outline-dark">Login/SignUp</button>
 					</a></li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/MysoreMart/cart" style="position: relative;">
-                        <i class="bi bi-cart4 text-danger fs-2"></i>
-                        <span id="cart-count" class="badge bg-danger" style="display: none;">0</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        </div>
-    </nav>
+					<li class="nav-item"><a class="nav-link"
+						href="/MysoreMart/cart" style="position: relative;"> <i
+							class="bi bi-cart4 text-danger fs-2"></i> <span id="cart-count"
+							class="badge bg-danger" style="display: none;">0</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-    <main>
-        <div id="success-alert" class="alert alert-success" role="alert" style="display: none;">
-            Item has been added to cart successfully.
-        </div>
-        <section id="carouselExampleAutoplaying" class="carousel slide mt-3"
+	<main class="bg-light">
+		<div id="success-alert" class="alert alert-success" role="alert"
+			style="display: none;">Item has been added to cart
+			successfully.</div>
+		<section id="carouselExampleAutoplaying" class="carousel slide mt-3"
 			data-bs-ride="carousel" data-bs-interval="1500">
 			<div class="carousel-indicators">
 				<button type="button" data-bs-target="#carouselExampleIndicators"
@@ -97,8 +103,6 @@
 					data-bs-slide-to="3" aria-label="Slide 4"></button>
 				<button type="button" data-bs-target="#carouselExampleIndicators"
 					data-bs-slide-to="4" aria-label="Slide 5"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators"
-					data-bs-slide-to="5" aria-label="Slide 6"></button>
 			</div>
 			<div class="carousel-inner col-6 col-md-4 col-lg-4 mb-4">
 				<div class="carousel-item active">
@@ -123,13 +127,7 @@
 						src="images/product/Mobile Shop Ad - Made with PosterMyWall.jpg"
 						class="d-block w-100 img-fluid" alt="Banner">
 				</div>
-				<div class="carousel-item">
-					<video class="d-block w-100 autoplay loop muted" controls>
-						<source
-							src="images/product/Fresh organic vegetable flyer - Made with PosterMyWall.mp4"
-							type="video/mp4">
-					</video>
-				</div>
+
 			</div>
 			<button class="carousel-control-prev" type="button"
 				data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -142,11 +140,11 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</section>
- 
+
 		<section id="filter">
 			<div class="category-container">
 
-				<a href="fruits" class="category-link">
+				<a href="fruits" class="category-link shadow">
 					<button class="category-btn" aria-label="Fresh Fruits">
 						<div class="category-content">
 							<div class="veggies">
@@ -155,7 +153,7 @@
 							<div class="category-text">Fruits</div>
 						</div>
 					</button>
-				</a> <a href="dairyProducts" class="category-link">
+				</a> <a href="dairyProducts" class="category-link shadow">
 					<button class="category-btn" aria-label="Dairy Products">
 						<div class="category-content">
 							<div class="veggies">
@@ -165,7 +163,7 @@
 							<div class="category-text">Dairy</div>
 						</div>
 					</button>
-				</a> <a href="dal-pulses" class="category-link">
+				</a> <a href="dal-pulses" class="category-link shadow">
 					<button class="category-btn" aria-label="Pulses">
 						<div class="category-content">
 							<div class="veggies">
@@ -174,7 +172,7 @@
 							<div class="category-text">Dal/Pulses</div>
 						</div>
 					</button>
-				</a> <a href="vegetable" class="category-link">
+				</a> <a href="vegetable" class="category-link shadow">
 					<button class="category-btn" aria-label="Fresh Vegetables">
 						<div class="category-content">
 							<div class="veggies">
@@ -183,7 +181,7 @@
 							<div class="category-text">Vegetables</div>
 						</div>
 					</button>
-				</a> <a href="biscuits" class="category-link">
+				</a> <a href="biscuits" class="category-link shadow">
 					<button class="category-btn" aria-label="Sip-Snack">
 						<div class="category-content">
 							<div class="veggies">
@@ -192,7 +190,7 @@
 							<div class="category-text">Sip-Snack</div>
 						</div>
 					</button>
-				</a> <a href="dryFruits" class="category-link">
+				</a> <a href="dryFruits" class="category-link shadow">
 					<button class="category-btn" aria-label="Dry Fruits">
 						<div class="category-content">
 							<div class="veggies">
@@ -201,7 +199,7 @@
 							<div class="category-text">Dry Fruits</div>
 						</div>
 					</button>
-				</a> <a href="grocery" class="category-link">
+				</a> <a href="grocery" class="category-link shadow">
 					<button class="category-btn" aria-label="Wholesome Grains">
 						<div class="category-content">
 							<div class="veggies">
@@ -210,7 +208,7 @@
 							<div class="category-text">Grains</div>
 						</div>
 					</button>
-				</a>  <a href="spices" class="category-link">
+				</a> <a href="spices" class="category-link shadow">
 					<button class="category-btn" aria-label="Spices/Oils">
 						<div class="category-content">
 							<div class="veggies">
@@ -222,64 +220,198 @@
 				</a>
 			</div>
 		</section>
-		<form action="add" method="post" id="cart-form">
-			<div class="row">
-				<div class="col-md-4 mb-4 product">
-					<div class="card spice-card-whole">
-						<img src="images/product/turmeric.jpg" class="card-img-top"
-							alt="Turmeric">
-						<div class="card-body">
-							<h5 class="card-title">Turmeric</h5>
-							<span class="badge badge-danger">Spice</span>
-							<p class="card-text">Bright yellow, adds earthy flavor to
-								dishes.</p>
-							<p class="card-text">
-								<strong>&#8377;100</strong>
-							</p>
-							<div class="mb-3">
-								<select class="form-select" id="selectedQuantity"
-									name="selectedQuantity">
-									<option value="500g" data-price="100">500g - ₹100</option>
-									<option value="1kg" data-price="200">1kg - ₹200</option>
-								</select>
+		<section id="menu">
+
+			<form action="add" method="post" id="cart-form">
+
+				<div class="container ">
+					<div class="row">
+						<!-- 1st card (Apples) -->
+						<div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+							<div class="card card-fruits shadow">
+								<img src="images/product/apples.jpg" class="card-img-top c-img"
+									alt="Apples">
+								<div class="card-body">
+									<h5 class="card-title text-center">Apples</h5>
+									<p class="card-text">Crisp, juicy, and packed with vitamins
+										for a refreshing snack.</p>
+									<p class="card-text">
+										<strong>₹100</strong>
+									</p>
+									<div class="mb-3">
+										<select class="form-select" id="selectedQuantity"
+											name="selectedQuantity">
+											<option value="500g" data-price="100">500g - ₹100</option>
+											<option value="1kg" data-price="200">1kg - ₹200</option>
+											<option value="2kg" data-price="400">2kg - ₹400</option>
+										</select>
+									</div>
+									<button type="button"
+										class="btn btn-outline-danger add-to-cart">Add to
+										Cart</button>
+								</div>
 							</div>
-							<button type="button" class="btn btn-outline-danger add-to-cart">Add
-								to Cart</button>
 						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-4 mb-4 product">
-					<div class="card spice-card-whole">
-						<img src="images/product/apples.jpg" class="card-img-top"
-							alt="Turmeric">
-						<div class="card-body">
-							<h5 class="card-title">Apple</h5>
-							<span class="badge badge-danger">Spice</span>
-							<p class="card-text">Bright yellow, adds earthy flavor to
-								dishes.</p>
-							<p class="card-text">
-								<strong>&#8377;200</strong>
-							</p>
-							<div class="mb-3">
-								<select class="form-select" id="selectedQuantity"
-									name="selectedQuantity">
-									<option value="500g" data-price="200">500g - ₹200</option>
-									<option value="1kg" data-price="400">1kg - ₹400</option>
-								</select>
+
+						<!-- 2nd card  (Blueberries) -->
+						<div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+							<div class="card card-fruits shadow">
+								<img src="images/product/blueberries.jpg" class="card-img-top"
+									alt="Blueberries">
+								<div class="card-body">
+									<h5 class="card-title">Blueberries</h5>
+									<p class="card-text">Antioxidant-rich, sweet, and tangy —
+										perfect for your health!</p>
+									<p class="card-text">
+										<strong>₹125</strong>
+									</p>
+									<div class="mb-3">
+										<select class="form-select" id="selectedQuantity"
+											name="selectedQuantity">
+											<option value="500g" data-price="125">500g - ₹125</option>
+											<option value="1kg" data-price="250">1kg - ₹250</option>
+											<option value="2kg" data-price="500">2kg - ₹500</option>
+										</select>
+									</div>
+									<button type="button"
+										class="btn btn-outline-danger add-to-cart">Add to
+										Cart</button>
+								</div>
 							</div>
-							<button type="button" class="btn btn-outline-danger add-to-cart">Add
-								to Cart</button>
 						</div>
+
+						<!-- 3rd card (Banana) -->
+						<div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+							<div class="card card-fruits shadow">
+								<img src="images/product/banana.jpg" class="card-img-top"
+									alt="Banana">
+								<div class="card-body">
+									<h5 class="card-title">Banana</h5>
+									<p class="card-text">Naturally sweet, rich in potassium,
+										and perfect for an energy boost!</p>
+									<p class="card-text">
+										<strong>₹90</strong>
+									</p>
+									<div class="mb-3">
+										<select class="form-select" id="selectedQuantity"
+											name="selectedQuantity">
+											<option value="500g" data-price="45">500g - ₹45</option>
+											<option value="1kg" data-price="90">1kg - ₹90</option>
+											<option value="2kg" data-price="180">2kg - ₹180</option>
+										</select>
+									</div>
+									<a href="#" class="btn btn-outline-danger add-to-cart">Add
+										to cart</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 4th card (Cucumber) -->
+						<div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+							<div class="card card-veg shadow">
+								<img src="images/product/cucumber.jpg" class="card-img-top"
+									alt="Cucumber">
+								<div class="card-body">
+									<h5 class="card-title">Cucumber</h5>
+									<p class="card-text">Refreshing, crisp, and hydrating – the
+										perfect summer veggie!</p>
+									<p class="card-text">
+										<strong>₹35</strong>
+									</p>
+									<div class="mb-3">
+										<select class="form-select" id="selectedQuantity"
+											name="selectedQuantity">
+											<option value="500g" data-price="15">500g - ₹15</option>
+											<option value="1kg" data-price="30">1kg - ₹30</option>
+											<option value="2kg" data-price="60">2kg - ₹60</option>
+										</select>
+									</div>
+									<a href="#" class="btn btn-outline-danger add-to-cart">Add
+										to cart</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 5th card (Tomatoes) -->
+						<div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+							<div class="card card-veg shadow">
+								<img src="images/product/tomatoes.jpg" class="card-img-top"
+									alt="Tomatoes">
+								<div class="card-body">
+									<h5 class="card-title">Tomatoes</h5>
+									<p class="card-text">Tangy and juicy, perfect for salads,
+										soups, and more!</p>
+									<p class="card-text">
+										<strong>₹40</strong>
+									</p>
+									<div class="mb-3">
+										<select class="form-select" id="selectedQuantity"
+											name="selectedQuantity">
+											<option value="500g" data-price="20">500g - ₹20</option>
+											<option value="1kg" data-price="40">1kg - ₹40</option>
+											<option value="2kg" data-price="80">2kg - ₹80</option>
+										</select>
+									</div>
+									<a href="#" class="btn btn-outline-danger add-to-cart">Add
+										to cart</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- 6th card (Onions) -->
+						<div class="col-lg-2 col-md-3 col-sm-4 mb-4">
+							<div class="card card-veg shadow">
+								<img src="images/product/onions.jpg" class="card-img-top"
+									alt="Onions">
+								<div class="card-body">
+									<h5 class="card-title">Onions</h5>
+									<p class="card-text">A kitchen essential, adding flavor and
+										aroma to every dish.</p>
+									<p class="card-text">
+										<strong>₹50</strong>
+									</p>
+									<div class="mb-3">
+										<select class="form-select" id="selectedQuantity"
+											name="selectedQuantity">
+											<option value="500g" data-price="25">500g - ₹25</option>
+											<option value="1kg" data-price="50">1kg - ₹50</option>
+											<option value="2kg" data-price="100">2kg - ₹100</option>
+										</select>
+									</div>
+									<a href="#" class="btn btn-outline-danger add-to-cart">Add
+										to cart</a>
+								</div>
+							</div>
+						</div>
+
+
 					</div>
 				</div>
 
-			</div>
-		</form>
+			</form>
+
+		</section>
 	</main>
+
+	<footer class="bg-dark py-3 mt-5">
+		<div id="contact" class="conatiner text-light text-center">
+			<h4>Contact Us</h4>
+			<p>Email: support@mysoremart.com</p>
+			<p>Phone: +91 9988776655</p>
+		</div>
+		<div class="container text-light text-center">
+			<a class="navbar-brand ms-0" href="#"> <img
+				src="images/product/mart.png" alt="Mysore Mart" width="200"
+				height="75">
+			</a> <br> <small class="text-white-50">&copy; 2024
+				MysoreMart. All rights reserved. </small>
+			<!-- copy symbol and  white text with 50% opacity -->
+		</div>
+	</footer>
 	<script src="<c:url value='/js/index.js'/>"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
 </body>
 </html>
