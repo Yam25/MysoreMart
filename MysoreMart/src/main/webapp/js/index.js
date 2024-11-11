@@ -54,5 +54,39 @@ let cartCount = 0; // Initialize cart count
 	    });
 	});
 	
+
+	/* Divyananda's index.js for only  Front Page */
+
+	document.addEventListener('DOMContentLoaded', function () {
+			
+		  const productContainer = document.querySelector('#menu'); 
+
+		  if (productContainer) {
+		    productContainer.addEventListener('change', function (event) {
+		      
+		      if (event.target && event.target.tagName.toLowerCase() === 'select') {
+		        const selectedOption = event.target.options[event.target.selectedIndex];
+		        const price = selectedOption.getAttribute('data-price');
+		        const priceElement = event.target.closest('.card-body').querySelector('strong');
+		        
+		        if (priceElement) {
+		          priceElement.textContent = `₹${price}`;
+		        }
+		      }
+		    });
+
+		    
+		    const selectElements = productContainer.querySelectorAll('select');
+		    selectElements.forEach(function (select) {
+		      const selectedOption = select.options[select.selectedIndex];
+		      const priceElement = select.closest('.card-body').querySelector('strong');
+		      const price = selectedOption.getAttribute('data-price');
+		      if (priceElement) {
+		        priceElement.textContent = `₹${price}`;
+		      }
+		    });
+		  }
+		});
+	
 	
 	
