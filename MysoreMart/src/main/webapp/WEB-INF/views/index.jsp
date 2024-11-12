@@ -13,7 +13,7 @@
 	content="grocery, provisions, home goods, online shopping, MysoreMart, buy online, best deals">
 <meta name="robots" content="index, follow">
 <title>MysoreMart - Shop the Best Deals on Groceries &
-	Provisions</title>
+	Provision</title>
 <link rel="icon" href="images/product/mart.png" sizes="256x256"
 	type="image/png">
 <link

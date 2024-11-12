@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>MysoreMart - Shop the Best Deals on Groceries &
-	Provisions</title>
+	Provision</title>
 <link rel="icon" href="images/product/mart.png" type="image/png">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
