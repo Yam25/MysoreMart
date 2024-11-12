@@ -72,7 +72,7 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">My Cart</h5>
                         <p class="card-text">Review items  before checkout.</p>
-                        <a href="#" class="btn btn-primary">Go to Cart</a>
+                        <a href="/MysoreMart/cart" class="btn btn-primary">Go to Cart</a>
                     </div>
                 </div>
             </div>

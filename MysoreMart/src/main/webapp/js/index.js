@@ -4,7 +4,7 @@ let cartCount = 0; // Initialize cart count
 	$(document).ready(function () {
 		
 		
-		// Dynamic price update based on selected quantity
+		/*// Dynamic price update based on selected quantity
 		    $('.product').each(function() { //each card class should have common class name like product or sm
 		        const $card = $(this);
 
@@ -17,8 +17,7 @@ let cartCount = 0; // Initialize cart count
 		            let selectedPrice = parseFloat(selectedOption.data('price')); 
 		            priceTextElement.text(`₹${selectedPrice}`); 
 		        });
-		    });
-
+		    });*/
 		
 		
 	    $(".add-to-cart").on("click", function (e) {

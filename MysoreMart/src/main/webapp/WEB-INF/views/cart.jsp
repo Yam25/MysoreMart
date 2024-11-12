@@ -145,7 +145,7 @@
 		<section id="empty-cart" class="container py-5 text-center"
 			style="display: none;">
 			<h1 class="title">Cart is Empty</h1>
-			<i class="bi bi-cart-x" style="font-size: 4rem;"></i>
+			<i class="bi bi-cart-x" style="font-size: 4rem;"></i> 
 			<p class="item">You have no items in your cart.</p>
 		</section>
 	</main>

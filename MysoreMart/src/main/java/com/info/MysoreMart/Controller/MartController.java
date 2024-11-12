@@ -23,19 +23,20 @@ public class MartController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";  // Return login.jsp or login.html
+        return "login"; 
     }
     
     @GetMapping("/register")
     public String register() {
-        return "register";  // Return login.jsp or login.html
+        return "register"; 
     }
     
     @GetMapping("/forget")
     public String forgot() {
-        return "forget";  // Return userForget.jsp  or userForget.html
+        return "forget";  
     }
     
+/* <<<<<<< HEAD */
     @GetMapping("/index")
     public String index() {
         return "index"; 
@@ -61,10 +62,6 @@ public class MartController {
         return "spices"; 
     }
 	
-	@GetMapping("/fruits")
-    public String fruits() {
-        return "fruits"; 
-    }
 	
 	@GetMapping("/biscuits")
     public String dummy() {
@@ -76,12 +73,34 @@ public class MartController {
         return "dal-pulses"; 
     }
 	
-	@GetMapping("/grocery")
-    public String grocery() {
-        return "grocery"; 
-    }
+	
 
     
+
+    @GetMapping("/fruits")
+    public String fruits() {
+        return "fruits";  
+    }
+    @GetMapping("/biscuits")
+    public String biscuits() {
+        return "biscuits";  
+    }
+    
+    @GetMapping("/dal-pulses")
+    public String dalpulses() {
+        return "dal-pulses";  
+    }
+    
+    @GetMapping("/grocery")
+    public String grocery() {
+        return "grocery";  
+    }
+    
+    @GetMapping("/dryFruits")
+    public String dryFruits() {
+        return "dryFruits";  
+    }
+/* branch 'main' of https: *///github.com/Yam25/MysoreMart
     
     @GetMapping("/cart")
     public String getCartItems(Model model) {
